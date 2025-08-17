@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const postButton = document.getElementById('execute');
     const postUrlDom = document.getElementById('post_url');
     const statusDiv = document.getElementById('status');
+    const selectorDom = document.getElementById('post_css_selector');
 
     postButton.addEventListener('click', () => {
         const postUrl = postUrlDom.value;
+        const selectorValue = selectorDom.value;
         if (!postUrl)
         {
             statusDiv.textContent = "missing url";
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentTabUrl = tabs[0].url;
 
             // to get content
-            chrome.tabs.sendMessage(currentTabId, { action: "get_inner_html" }, (response) => {
+            chrome.tabs.sendMessage(currentTabId, {action: "get_inner_html", selector: selectorValue}, (response) => {
                 if (response && response.success) {
                     const htmlContent = response.html;
 
