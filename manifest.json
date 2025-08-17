@@ -1,0 +1,22 @@
+{
+  "name": "llm Extensions",
+  "description": "content llm backend Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "panel.html",
+    "default_icon": "default_icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts" : [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
